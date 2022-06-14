@@ -1,0 +1,273 @@
+/* 登入註冊        登入註冊 */
+.loadinout {
+    background-image: linear-gradient(to bottom, rgba(2, 2, 2, 0.829), rgba(2, 2, 2, 0.877));
+    color: white;
+    justify-content: right;
+    display: flex;
+    font-size: 14px;
+    padding: 0px 10px;
+}
+
+/* <!-- 導覽列     導覽列--> */
+
+.logoDiv img {
+    width: 300px;
+    height: 103px;
+    display: flex;
+    position: absolute;
+    top: -23px;
+    left: 0px;
+}
+
+.navBar {
+    background-image: linear-gradient(to bottom, rgba(2, 2, 2, 0.877), rgb(13, 13, 13));
+    height: 80px;
+    display: flex;
+    justify-content: right;
+    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+
+.navBar ul {
+    list-style: none;
+}
+
+.navBar>div>ul>li {
+    display: inline-block;
+    color: white;
+    font-size: 20px;
+    padding: 30px 70px 20px 70px;
+    position: relative;
+}
+
+.navBar>div>ul>li:nth-of-type(4),
+.navBar>div>ul>li:nth-of-type(5) {
+    font-size: 16px;
+    padding: 30px 40px 20px 30px;
+}
+
+.navBar a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.navMenu {
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    width: 180px;
+    background-color: rgba(39, 39, 39, 0.767);
+    padding: 20px 0px 0px 0px;
+    display: none;
+}
+
+.navBar>div>ul>li:nth-of-type(4) .navMenu,
+.navBar>div>ul>li:nth-of-type(5) .navMenu {
+    position: absolute;
+    top: 75px;
+    left: -30px;
+}
+
+.navMenu li {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.navBar>div>ul>li:hover .navMenu {
+    display: block;
+}
+
+.navMenu li:hover {
+    background-color: aqua;
+}
+
+#menuBtn {
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
+
+.hamburger {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgb(94, 94, 94);
+    width: 40px;
+    height: 40px;
+    display: none;
+    
+}
+
+.hamburger>span {
+    opacity: 0;
+}
+
+.hamburger::before {
+    content: "";
+    width: 32px;
+    height: 2px;
+    background-color: rgb(240, 21, 221);
+    position: absolute;
+    left: 4px;
+    box-shadow: 0px 8px 0px rgb(5, 5, 5), 0px -8px 0px yellow;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+}
+
+/* 導覽列 RWD手機  RWD手機*/
+@media screen and (max-width:1366px) {
+    .navBar {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .logoDiv img {
+        width: 120px;
+        height: 63px;
+        top: -20px;
+        left: 0px;
+    }
+
+    .navBar {
+        height: 45px;
+        width: 100%;
+    }
+
+    .navBar>div>ul>li {
+        font-size: 12px;
+        padding: 17px 25px 12px 25px;
+        
+    }
+
+    .navBar>div>ul>li:nth-of-type(4),
+    .navBar>div>ul>li:nth-of-type(5) {
+        font-size: 8px;
+        padding: 17px 20px 12px 25px;
+    }
+
+    .navMenu {
+        width: 101px;
+        padding: 11px 0px 0px 0px;
+        top: 45px;
+        left: -20px;
+    }
+
+    .navBar>div>ul>li:nth-of-type(4) .navMenu,
+    .navBar>div>ul>li:nth-of-type(5) .navMenu {
+        top: 45px;
+        left: 0px;
+    }
+
+    .navMenu li {
+        padding: 5.5px 11px;
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 0px;
+    }
+
+    .logoDiv img {
+        width: 120px;
+        height: 63px;
+        top: -20px;
+        left: 0px;
+    }
+
+    .navBar {
+        height: 45px;
+        width: 100%;
+    }
+
+    .navBar>div>ul>li {
+        font-size: 12px;
+        padding: 17px 25px 12px 25px;
+        background-color: rgba(0, 0, 0, 0.726);
+        top: 45px;
+        left: 500px;
+        display: block;
+        width: 50vh;
+        font-size: 20px;
+    }
+
+    .navBar>div>ul>li:nth-of-type(4),
+    .navBar>div>ul>li:nth-of-type(5) {
+        font-size: 20px;
+        padding: 17px 20px 12px 25px;
+    }
+
+    .navMenu {
+        width: 200px;
+        padding: 11px 0px 0px 0px;
+        top: 20px;
+        left: 120px;
+    }
+
+    .navBar>div>ul>li:nth-of-type(4) .navMenu,
+    .navBar>div>ul>li:nth-of-type(5) .navMenu {
+        top: 20px;
+        left: 140px;
+    }
+
+    .navMenu li {
+        padding: 6px 11px;
+        font-size: 16px;
+    }
+
+    #menuBtn:checked~.navBar>div>ul>li {
+        left: 0px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* <!-- 頁尾                 頁尾 --> */
+
+div[class ^= footer] {
+    background-color: black;
+    margin: 50px 0px 0px 0px;
+    border-top: 1px solid white;
+    color: white;
+    text-align: center;
+}
+.footer div {
+    justify-content: center;
+    padding: 0px 0px 30px 0px;
+}
+
+.footer div a {
+    color: white;
+}
+
+.footer div p:first-of-type{
+margin: 50px 0px 35px 0px;
+font-size: 18px;
+}
+
+.footer div p:not(:first-child) {
+  margin: 10px 0px;
+  font-size: 16px;
+  }
+
+.footer>div:nth-of-type(1) img {
+    width: 350px;
+    height: 100px;
+  margin: 50px 0px;
+     
+}
