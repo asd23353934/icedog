@@ -258,7 +258,10 @@
     <script type="text/javascript">
         let arr = <?php echo json_encode($data)  ?>;
     </script>
-    <script src="../../member/members.js"></script>
+    <script src="../../member/members_home.js"></script>
+    <script src="../../member/members_profile.js"></script>
+    <script src="../../member/members_messages.js"></script>
+    <script src="../../member/members_settings.js"></script>
 </body>
 
 </html>
