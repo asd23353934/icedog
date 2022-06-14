@@ -256,7 +256,8 @@
         </div>
     </div>
     <script type="text/javascript">
-        let arr = <?php echo json_encode($data)  ?>;
+        let movie_ticket = <?php echo json_encode($data['movie_ticket']) ; ?>;
+        // console.log(arr);
     </script>
     <script src="../../member/members_home.js"></script>
     <script src="../../member/members_profile.js"></script>
