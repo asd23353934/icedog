@@ -47,7 +47,7 @@ function home00() {
     })
     console.log(home_tab.href);
     history.replaceState(0, 0, home_tab.href);
-    return false;
+    // return false;
 }
 home00();
 

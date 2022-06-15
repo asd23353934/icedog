@@ -327,6 +327,24 @@ div#down_qrcode > p:nth-child(3){
     padding: 15px 0 15px 0;
     margin: 25px 0 0 -48px;
 }
+div#profile > button.reduce{
+    z-index: 1;
+    position: relative;
+    top: 200px;
+    left: -20px;
+    background-color: transparent;
+    border: 20px solid;
+    border-color: transparent #C1C1C1 transparent transparent;
+}
+div#profile > button.add{
+    z-index: 1 !important;
+    position: relative;
+    top: 200px;
+    left: 685px;
+    background-color: transparent;
+    border: 20px solid;
+    border-color: transparent transparent transparent #C1C1C1;
+}
 form#cancel_form{
     position: absolute;
     top: 500px;
