@@ -53,8 +53,6 @@ function ticket(ax) {
         </div>
     </div>
     `;
-    history.replaceState(0, 0, `/IceDog/user/account/${ax}`);
-    return false;
 }
 // 退款
 function cancel() {

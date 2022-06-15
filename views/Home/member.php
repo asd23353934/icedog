@@ -139,7 +139,7 @@
                             <p id="ticket_name" class="ticket-list-group-item-heading">
                                 <span><?php echo $value['categorysName']?></span><?php echo " " . $value['moviesName'] ?>
                             </p>
-                            <a href="/IceDog/user/account/<?php echo $key?>" onclick="ticket(<?php echo $key?>)" id="ticket_content">
+                            <a href="/IceDog/user/account/<?php echo $key?>" onclick="ticket(<?php echo $key?>);return false" id="ticket_content">
                                 <p class="list-group-item-heading">
                                     上映場次
                                     <span id="date"><?php echo $value['show_date'] ?></span>
