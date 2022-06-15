@@ -136,7 +136,7 @@
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div id="ticket" class="list-group">
                         <p id="ticket_name" class="ticket-list-group-item-heading">
-                            <span><?php echo $data['movie_ticket'][0]['categorysName']?></span><?php echo " ".$data['movie_ticket'][0]['moviesName']?>
+                        <span><?php echo $data['movie_ticket'][0]['categorysName']?></span><?php echo " ".$data['movie_ticket'][0]['moviesName']?>
                         </p>
                         <a href="#" onclick="ticket(0)" id="ticket_content">
                             <p class="list-group-item-heading">
@@ -264,5 +264,4 @@
     <script src="../../member/members_messages.js"></script>
     <script src="../../member/members_settings.js"></script>
 </body>
-
 </html>

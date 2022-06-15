@@ -59,7 +59,16 @@ function ticket(ax) {
 }
 
 function down(ax) {
-    profile.innerHTML = `
+    var number = movie_ticket[ax]['number'];
+    if (number > 1){
+        var seat_name = movie_ticket[ax]['seat_name'].split(",") ;
+        console.log(seat_name);
+        seat_name.map((elm,idx)=>{
+            console.log(idx,elm);
+            
+        })
+    }else{
+        profile.innerHTML = `
         <div id="down_image">
             <img src="/image/大專首頁圖庫/R.jpg">
             <div id="down_content">
@@ -68,7 +77,7 @@ function down(ax) {
                 <div><p>A1<span>座</span></p></div>
                 <div><p>放映時間</p></div>
                 <div><p>${movie_ticket[ax]['show_date']} ${movie_ticket[ax]['show_time']}</p></div>
-                <div><p>${movie_ticket[0]['moviesName']}</p></div>
+                <div><p>${movie_ticket[ax]['moviesName']}</p></div>
             </div>
         </div>
         <div id="down_qrcode">
@@ -76,7 +85,9 @@ function down(ax) {
             <img src="/qrcode.jpg">
             <p>請出示此畫面給服務人員核銷入場</p>
         </div>
-    `;
+        `;
+    }
+
 }
 
 function cancel() {
