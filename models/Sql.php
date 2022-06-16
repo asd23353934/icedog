@@ -45,12 +45,38 @@ class Sql
                        WHERE movie_ticket.user_id = 1
                        order by movie_ticket.ticket_id desc;";
         $result = mysqli_query($this->link, $sql);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $rows[] = $row;
+        if ($result === false) {
+            return false;
+        } else {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $rows[] = $row;
+            }
+            return $rows;
         }
-        return $rows;
     }
-
+    public function creditcards()
+    {
+        $result = mysqli_query($this->link, "SELECT * FROM creditcards WHERE user_id = 1");
+        if ($result === false) {
+            return false;
+        } else {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+    }
+    public function creditcard_add($array){
+        $array = explode(',',$array);
+        $sql = sprintf("INSERT INTO creditcards(bankName,account,year,month,user_id) VALUES ('%s','%s','%s','%s',1)",$array[0],$array[1],$array[2],$array[3]) ;
+        $result = mysqli_query($this->link,$sql);
+        return (!$result) ? 'false' : 'true';
+    }
+    public function user_ticket_delete($ticket_id)
+    {
+        $result = mysqli_query($this->link, "DELETE FROM movie_ticket WHERE ticket_id = $ticket_id && user_id = 1");
+        return (!$result) ? 'false' : 'true';
+    }
     public function user_name_update($first, $last, $userName)
     {
         $result = mysqli_query($this->link, "UPDATE users SET firstName = '$first' , lastName = '$last' WHERE userName = '$userName'");

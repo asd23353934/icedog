@@ -2,6 +2,7 @@ console.log(movie_ticket);
 let profile = document.getElementById("profile");
 let profile_content = profile.innerHTML;
 let profile_tab = document.getElementById("profile-tab");
+let ticket_content = document.querySelectorAll("#ticket_content");
 //點擊我的票券重整內容
 profile_tab.onclick = () => {
     profile.innerHTML = profile_content;
@@ -11,10 +12,12 @@ profile_tab.onclick = () => {
 }
 
 function ticket(ax) {
+    console.log(ticket_content[ax].href);
+    history.replaceState(0, 0, ticket_content[ax].href);
     profile.innerHTML = `
         <div id="record" class="list-group">
             <p id="record_name" class="record-list-group-item-heading">
-               <span>${movie_ticket[ax]['categorysName']}</span> ${movie_ticket[0]['moviesName']}
+               <span>${movie_ticket[ax]['categorysName']}</span> ${movie_ticket[ax]['moviesName']}
             </p>
         <div id="next_content">
             <p class="list-group-item-heading">
@@ -55,35 +58,52 @@ function ticket(ax) {
     `;
 }
 // 退款
-function cancel() {
+function cancel(ax) {
     profile.innerHTML = `
-    <form id="cancel_form" method="POST">
-        <div>確定後將退款</div>
-        <input type="submit" name="cancel" value="確認取消">
-    </form>
-    
+    <div id="cancel_form">
+        <div>確定後將全額退款</div>
+        <a class="btn btn-primary" href="/IceDog/user/cancel/${ax}" role="button">確認取消</a>
+    </div>
     `;
+    let cancel_ = document.querySelector("#cancel_form a");
+    console.log(cancel_);
+    let movie_ticket = movie_ticket[ax]['ticket_id'];
+    console.log(movie_ticket[ax]['ticket_id']);
+    debugger;
+    cancel_.onclick = () => {
+        var xml = new XMLHttpRequest();
+        xml.onreadystatechange=function() {
+            if (this.readyState==4 && this.status==200) {
+                if (this.response){
+                    location.href = "http://localhost/IceDog/user/account/home";
+                }else{
+                    console.log(xml.response);
+                    return false;
+                }
+            }
+          }
+        xml.open("GET", "../../ajax/cancelController.php?q=" + movie_ticket[ax]['ticket_id'], true);
+        xml.send();
+    }
 }
 // 核銷qrcode
-
-function down(chage,ax, xa) {
+function down(chage, ax, xa) {
     var seat_name = movie_ticket[ax]['seat_name'].split(",");
     var page = xa;
-    if(chage == "reduce"){
+    if (chage == "reduce") {
         console.log(chage);
         page--;
     }
-    if(chage == "add"){
+    if (chage == "add") {
         console.log(chage);
-        page++
+        page++;
     }
-    if(page < 0){
-        page = seat_name.length-1;
+    if (page < 0) {
+        page = seat_name.length - 1;
     }
-    if(page > seat_name.length-1){
+    if (page > seat_name.length - 1) {
         page = 0;
     }
-    
     // console.log(seat_name[0]);
     profile.innerHTML = `
         <button type="button" onclick="down('reduce',${ax},${page})" class="reduce"></button>
@@ -100,11 +120,10 @@ function down(chage,ax, xa) {
             </div>
         </div>
         <div id="down_qrcode">
-            <p>第${page+1}張,共${seat_name.length}張</p>
+            <p>第${page + 1}張,共${seat_name.length}張</p>
             <img src="../../qrcode.jpg">
             <p>請出示此畫面給服務人員核銷入場</p>
         </div>
-        
         `;
 }
 // function downlist(chage,ax,page) {

@@ -19,8 +19,6 @@
 </head>
 
 <body>
-
-
     <span class="loadinout">登入/註冊</span>
     <input type="radio" id="menuBtn">
     <div class="navBar">
@@ -134,56 +132,40 @@
                 </div>
                 <!-- 我的票夾 -->
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <?php foreach ($data['movie_ticket'] as $key => $value) : ?>
-                        <div id="ticket" class="list-group">
-                            <p id="ticket_name" class="ticket-list-group-item-heading">
-                                <span><?php echo $value['categorysName']?></span><?php echo " " . $value['moviesName'] ?>
-                            </p>
-                            <a href="/IceDog/user/account/<?php echo $key?>" onclick="ticket(<?php echo $key?>);return false" id="ticket_content">
-                                <p class="list-group-item-heading">
-                                    上映場次
-                                    <span id="date"><?php echo $value['show_date'] ?></span>
-                                    <span><?php echo $value['show_time'] ?></span>
+                    <?php if ($data['movie_ticket']) : ?>
+                        <?php foreach ($data['movie_ticket'] as $key => $value) : ?>
+                            <div id="ticket" class="list-group">
+                                <p id="ticket_name" class="ticket-list-group-item-heading">
+                                    <span><?php echo $value['categorysName'] ?></span><?php echo " " . $value['moviesName'] ?>
                                 </p>
-                                <p class="list-group-item-heading"></p>
-                                上映廳院
-                                <span id="cinemas">冰狗影城@</span>
-                                <span><?php echo $value['cinemasName'] ?></span>
-                                <span><?php echo $value['theatersName'] ?></span>
-                                </p>
-                                <p id="click_check">點擊查看</p>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
+                                <a href="/IceDog/user/profile/<?php echo $key ?>" onclick="ticket(<?php echo $key ?>);return false" id="ticket_content">
+                                    <p class="list-group-item-heading">
+                                        上映場次
+                                        <span id="date"><?php echo $value['show_date'] ?></span>
+                                        <span><?php echo $value['show_time'] ?></span>
+                                    </p>
+                                    <p class="list-group-item-heading"></p>
+                                    上映廳院
+                                    <span id="cinemas">冰狗影城@</span>
+                                    <span><?php echo $value['cinemasName'] ?></span>
+                                    <span><?php echo $value['theatersName'] ?>廳</span>
+                                    </p>
+                                    <p id="click_check">點擊查看</p>
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div>尚未上映的票券</div>
+                    <?php endif ?>
                 </div>
                 <!-- 消費紀錄 -->
                 <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
-                    <!-- <div id="consumption" class="list-group">
-                        <p id="record_name" class="record-list-group-item-heading">
-                            ㄐㄐ博士
-                        </p>
-                        <a href="#" onclick="message(1)" id="record_content">
-                            <p class="list-group-item-heading">
-                                上映場次
-                                <span id="date">2087-09-09</span>
-                                <span>20:30</span>
-                            </p>
-                            <p class="list-group-item-heading">
-                                上映廳院
-                                <span id="cinemas">冰狗影城@</span>
-                                <span>台北信義區</span>
-                                <span>A廳</span>
-                            </p>
-                            <p id="click_check">點擊查看</p>
-                        </a>
-                    </div>
-                    <div id="sp"></div> -->
                     <?php foreach ($data['movie_ticket'] as $key => $value) : ?>
                         <div id="ticket" class="list-group">
                             <p id="ticket_name" class="ticket-list-group-item-heading">
-                                <span><?php echo $value['categorysName']?></span><?php echo " " . $value['moviesName'] ?>
+                                <span><?php echo $value['categorysName'] ?></span><?php echo " " . $value['moviesName'] ?>
                             </p>
-                            <a href="#" onclick="ticket(<?php echo $key?>)" id="ticket_content">
+                            <a href="/IceDog/user/message/<?php echo $key ?>" onclick="message(<?php echo $key?>);return false;" id="ticket_content">
                                 <p class="list-group-item-heading">
                                     上映場次
                                     <span id="date"><?php echo $value['show_date'] ?></span>
@@ -193,7 +175,7 @@
                                 上映廳院
                                 <span id="cinemas">冰狗影城@</span>
                                 <span><?php echo $value['cinemasName'] ?></span>
-                                <span><?php echo $value['theatersName'] ?></span>
+                                <span><?php echo $value['theatersName'] ?>廳</span>
                                 </p>
                                 <p id="click_check">點擊查看</p>
                             </a>
@@ -207,14 +189,18 @@
                             信用卡/金融卡
                         </p>
                         <div id="credit_card_content">
-                            <a href="#" onclick="card_list(1)" id="credit_card_list">
-                                <div id="card_content">
-                                    <p>忠狗信託</p>
-                                    <p>8787*</p>
-                                    <div></div>
-                                </div>
-                            </a>
-                            <a href="#" onclick="card_new()" id="credit_card_new">
+                            <?php if ($data['creditcards']) : ?>
+                                <?php foreach ($data['creditcards'] as $key => $value) : ?>
+                                    <a href="#" onclick="card_message(<?php echo $key?>)" id="credit_card_list">
+                                        <div id="card_content">
+                                            <p><?php echo $value['bankName'] ?></p>
+                                            <p><?php $str = substr($value['account'],11,14) ; echo '*'.$str ?></p>
+                                            <div></div>
+                                        </div>
+                                    </a>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <a href="#" onclick="card_list()" id="credit_card_new">
                                 <div id="card_content">
                                     <p>+</p>
                                     <p>新增卡片</p>
@@ -226,7 +212,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     <div class="footer row">
         <div class="col-12 col-lg-4 order-md-last"><img src="./image/大專首頁圖庫/R.jpg" alt=""></div>
@@ -260,6 +245,7 @@
     </div>
     <script type="text/javascript">
         let movie_ticket = <?php echo json_encode($data['movie_ticket']); ?>;
+        let creditcards = <?php echo json_encode($data['creditcards']);?>;
         // console.log(arr);
     </script>
     <script src="../../member/members_home.js"></script>

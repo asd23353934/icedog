@@ -31,4 +31,10 @@ class ajax
     public function image($file){
         return $this->sql->user_image_update($file, $this->userName);
     }
+    public function ticket($ticket_id){
+        return $this->sql->user_ticket_delete($ticket_id);
+    }
+    public function card_add($array){
+        return $this->sql->creditcard_add($array);
+    }
 }

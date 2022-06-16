@@ -29,6 +29,12 @@
             if(isset($_GET["url"])){
                 $url = rtrim($_GET["url"]);//移除字串右側的空白字元 /user/account/profile
                 $url = explode("/",$url);//把字串打散為陣列
+                if($url[0] == 'user'){
+                    if($url[1] != 'account'){
+                        header("location:/icedog/user/account/home");
+                        exit();
+                    }
+                }
                 var_dump($url);
                 return $url;
             }
